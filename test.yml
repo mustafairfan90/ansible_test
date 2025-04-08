@@ -1,0 +1,10 @@
+---
+- name: Install a package on RHEL 8 and RHEL 9 systems
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install httpd package
+      yum:
+        name: httpd
+        state: present
+      when: ansible_facts['distribution'] in ['RedHat', 'CentOS'] and ansible_facts['distribution_major_version'] in ['8', '9']
